@@ -141,7 +141,6 @@ Passwords are never stored as plain text.
 
 - HTML5
 - CSS3
-- JavaScript
 - Jinja2 Templates
 
 ## Backend
@@ -181,7 +180,7 @@ The application follows a simple web application architecture:
                             ▼
                  ┌─────────────────────┐
                  │      Frontend       │
-                 │ HTML / CSS / JS     │
+                 │ HTML / CSS          │
                  │ Jinja2 Templates    │
                  └──────────┬──────────┘
                             │
