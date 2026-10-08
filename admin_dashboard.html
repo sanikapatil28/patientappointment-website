@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Admin Analytics Dashboard</h2>
+
+<div class="dashboard-grid">
+
+    <div class="card">
+        <h3>Total Doctors</h3>
+        <h1>{{ total_doctors }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Total Patients</h3>
+        <h1>{{ total_patients }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Total Appointments</h3>
+        <h1>{{ total_appointments }}</h1>
+    </div>
+
+</div>
+
+<hr>
+
+<h3>Appointments Per Doctor</h3>
+
+<canvas id="doctorChart"></canvas>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('doctorChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ doctor_names | tojson }},
+            datasets: [{
+                label: 'Number of Appointments',
+                data: {{ appointment_counts | tojson }},
+                backgroundColor: '#3498db'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

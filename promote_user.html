@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+
+        <h2>Promote User to Admin</h2>
+
+        <form method="POST">
+            <input type="email" name="email"
+                   placeholder="Enter user email" required>
+
+            <button type="submit" class="primary-btn">
+                Promote to Admin
+            </button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

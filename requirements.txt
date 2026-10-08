@@ -1,0 +1,9 @@
+Flask
+pymongo
+flask-login
+flask-bcrypt
+flask-cors
+python-dotenv
+scikit-learn
+pandas
+numpy

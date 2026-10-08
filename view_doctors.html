@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Doctors List</h2>
+
+{% if session["role"] == "admin" %}
+    <a href="{{ url_for('doctor.add_doctor') }}">➕ Add Doctor</a>
+{% endif %}
+
+<hr>
+
+{% if doctors %}
+    {% for doctor in doctors %}
+        <div class="card">
+            <h3>{{ doctor.name }}</h3>
+            <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+            <p><strong>Experience:</strong> {{ doctor.experience }} years</p>
+            <p><strong>Available Slots:</strong> {{ doctor.available_slots }}</p>
+
+            {% if session["role"] == "admin" %}
+                <div style="margin-top:10px;">
+                    <a href="{{ url_for('doctor.edit_doctor', doctor_id=doctor._id) }}">✏️ Edit</a>
+                    |
+                    <a href="{{ url_for('doctor.delete_doctor', doctor_id=doctor._id) }}"
+                       onclick="return confirm('Are you sure you want to delete this doctor?');">
+                       🗑 Delete
+                    </a>
+                </div>
+            {% elif session["role"] == "patient" %}
+                <div style="margin-top:10px;">
+                    <a href="{{ url_for('appointment.book_appointment', doctor_id=doctor._id) }}">
+                        📅 Book Appointment
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No doctors available.</p>
+{% endif %}
+
+{% endblock %}

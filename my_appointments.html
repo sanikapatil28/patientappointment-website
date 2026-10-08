@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="appointments-container">
+
+    <h2>My Appointments</h2>
+
+    <a href="{{ url_for('dashboard') }}" class="back-link">
+        ⬅ Back to Dashboard
+    </a>
+
+    <hr>
+
+    {% for appt in appointments %}
+        <div class="appointment-card">
+            
+            <p><strong>Date:</strong> {{ appt.date }}</p>
+            <p><strong>Time:</strong> {{ appt.time }}</p>
+
+            <p>
+                <strong>Status:</strong>
+                {% if appt.status == "Booked" %}
+                    <span class="status-booked">{{ appt.status }}</span>
+                {% else %}
+                    <span class="status-cancelled">{{ appt.status }}</span>
+                {% endif %}
+            </p>
+
+            {% if appt.status == "Booked" %}
+                <a href="{{ url_for('appointment.cancel_appointment', appointment_id=appt._id) }}"
+                   class="cancel-btn">
+                    ❌ Cancel Appointment
+                </a>
+            {% elif appt.status == "Cancelled" %}
+                <p class="cancel-text">⚠️ This appointment was cancelled.</p>
+                <a href="{{ url_for('doctor.view_doctors') }}"
+                   class="book-again-btn">
+                    🔄 Book New Appointment
+                </a>
+            {% endif %}
+            
+        </div>
+
+    {% else %}
+        <div class="no-appointments">
+            <p>No appointments found.</p>
+            <a href="{{ url_for('doctor.view_doctors') }}"
+               class="book-again-btn">
+                Book Your First Appointment
+            </a>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Welcome {{ name }} 👋</h2>
+
+<div class="dashboard-grid">
+
+{% if session["role"] == "admin" %}
+
+    <div class="card">
+        <h3>👨‍⚕️ Manage Doctors</h3>
+        <p>Add and manage doctor profiles.</p>
+        <a href="{{ url_for('doctor.view_doctors') }}">Open</a>
+    </div>
+
+    <div class="card">
+        <h3>📋 All Appointments</h3>
+        <p>View and monitor all bookings.</p>
+        <a href="{{ url_for('appointment.admin_all_appointments') }}">Open</a>
+    </div>
+
+    <div class="card">
+        <h3>📊 Analytics</h3>
+        <p>System statistics and reports.</p>
+        <a href="{{ url_for('appointment.admin_dashboard') }}">Open</a>
+    </div>
+
+{% elif session["role"] == "patient" %}
+
+    <div class="card">
+        <h3>🩺 View Doctors</h3>
+        <p>Browse and book appointments.</p>
+        <a href="{{ url_for('doctor.view_doctors') }}">Open</a>
+    </div>
+
+    <div class="card">
+        <h3>📅 My Appointments</h3>
+        <p>View or cancel your bookings.</p>
+        <a href="{{ url_for('appointment.my_appointments') }}">Open</a>
+    </div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

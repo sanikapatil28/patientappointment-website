@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="hero-card">
+        <h1>🏥 PatientFlow</h1>
+        <p>
+            Simplifying healthcare by connecting patients with doctors
+            through a seamless appointment booking system.
+        </p>
+
+        {% if not session.get("user_id") %}
+        <div class="hero-buttons">
+            <a href="{{ url_for('auth.login') }}" class="primary-btn">Login</a>
+            <a href="{{ url_for('auth.register') }}" class="secondary-btn">Register</a>
+        </div>
+        {% else %}
+        <a href="{{ url_for('dashboard') }}" class="primary-btn">
+            Go to Dashboard
+        </a>
+        {% endif %}
+    </div>
+</section>
+
+
+<!-- INFO SECTION -->
+<section class="info-section">
+
+    <div class="container">
+
+        <!-- ABOUT US -->
+        <h2 style="text-align:center; margin-bottom:50px;">About Us</h2>
+
+        <div class="features-wrapper">
+
+            <div class="modern-card">
+                <h3>🎯 Our Mission</h3>
+                <p>
+                    To simplify healthcare management by providing
+                    an efficient and secure appointment system.
+                </p>
+            </div>
+
+            <div class="modern-card">
+                <h3>🌍 Our Vision</h3>
+                <p>
+                    To create a seamless digital experience connecting
+                    patients and hospitals.
+                </p>
+            </div>
+
+            <div class="modern-card">
+                <h3>💡 Our Goal</h3>
+                <p>
+                    Reduce waiting time, improve workflow,
+                    and enhance patient satisfaction.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- FEATURES -->
+        <h2 style="text-align:center; margin:80px 0 50px 0;">Our Features</h2>
+
+        <div class="features-wrapper">
+
+            <div class="modern-card">
+                <h3>🩺 Doctor Management</h3>
+                <p>Add, edit and manage doctors easily from admin panel.</p>
+            </div>
+
+            <div class="modern-card">
+                <h3>📅 Real-Time Booking</h3>
+                <p>Live slot availability with double-booking prevention.</p>
+            </div>
+
+            <div class="modern-card">
+                <h3>📊 Analytics Dashboard</h3>
+                <p>Visual charts and appointment insights for admins.</p>
+            </div>
+
+            <div class="modern-card">
+                <h3>🔐 Secure Authentication</h3>
+                <p>Role-based login system for safe access control.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY CHOOSE US -->
+<section class="why-simple">
+    <div class="why-box">
+        <h3>Why Choose Us?</h3>
+        <p>
+            ✔ Fast & Efficient Booking <br>
+            ✔ Secure Role-Based Access <br>
+            ✔ Real-Time Slot Management <br>
+            ✔ Smart Admin Analytics
+        </p>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2026 Patient Appointment Management System | All Rights Reserved</p>
+</footer>
+
+{% endblock %}
